@@ -11,8 +11,12 @@ source:
 
 build:
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  # Default package name is suds-community and needs to be overridden with an environment variable
+  # https://github.com/suds-community/suds/blob/a616d96b070ca119a532ff395d4a2a2ba42b257c/setup.py#L648
+  # This will change in in the 2.0.0 release
+  # https://github.com/suds-community/suds/blob/a616d96b070ca119a532ff395d4a2a2ba42b257c/README.md#overview
+  script: SUDS_PACKAGE=suds {{ PYTHON }} -m pip install . -vv
+  number: 1
 
 requirements:
   host:
